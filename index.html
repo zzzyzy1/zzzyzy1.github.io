@@ -100,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj59aqruy0006k47txaymnwfe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj59atlzv00043o7titdqpdx6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -145,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj59aqruk0001k47t29x84d26" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj59atlzq00013o7tmia1g4ju" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,26 +181,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><p>1.新建仓库 username.github.io </p>
-<p>2.新建read.me</p>
-<p>3.安装node.js<br>4.安装git</p>
-<p>5.安装hexo</p>
-<p>6.修改hexo 的配置文件，和github仓库建立关联</p>
-<p>7.购买域名，绑定username.github.io</p>
-<p>8.发布博客 hexo clean &amp;&amp;hexo g &amp;&amp;hexo d</p>
-<p>9.修改主题 <a href="https://www.haomwei.com/technology/maupassant-hexo.html" target="_blank" rel="external">详见</a></p>
-<p>10.加入评论和订阅功能 <a href="http://blog.csdn.net/u010053344/article/details/50701191" target="_blank" rel="external">详见此处</a></p>
-<p>*遇到的问题：</p>
-<pre><code>1.解决npm 安装国外依赖速度比较慢的问题*
+        <h2 id="逆向实例1"><a href="#逆向实例1" class="headerlink" title="逆向实例1"></a>逆向实例1</h2><h3 id="1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn"><a href="#1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn" class="headerlink" title="1.文件链接：https://pan.baidu.com/s/1bphae5p 提取码：fdmn"></a>1.文件链接：<a href="https://pan.baidu.com/s/1bphae5p" target="_blank" rel="external">https://pan.baidu.com/s/1bphae5p</a> 提取码：fdmn</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>直接运行reverseTest.exe：<br><img src="http://i.imgur.com/DukRT72.png" alt="">  </p>
+<p>图中几个信息：“please input the password”和一个MessageBox里的“failed”和“try again”。  </p>
+<p>将reverseTest.exe拉到OD中运行  </p>
+<p>右键–&gt;中文搜索引擎–&gt;智能搜索<br><img src="http://i.imgur.com/h4H2BSX.png" alt="">  </p>
+<p>发现关键字符串：“please input the password”<br><img src="http://i.imgur.com/a565gpr.png" alt="">  </p>
+<p>双击到指令所在位置0x00401061，看看啥情况<br>这时发现了野生的lstrcmpA字符串比较函数，下面的%s目测就是一个scanf之类的东西<br><img src="http://i.imgur.com/nJCvO27.png" alt=""><br>啥也不管了，先Alt+F9运行到“please input the password”的地方，随便写点东西进去看看怎么说  </p>
+<p>滚轮往下滚了几下，发现了如下几个部分：<br><img src="http://i.imgur.com/mXVfEiW.png" alt=""><br>第一个部分就是将password和我们的输入调用lstrcmpA函数进行比对。对，没错，这个`mddggzdl就是密码。<br>第二个部分就是比对失败之后调用MessageBoxA弹框显示失败并有个重试的按钮，点击重试之后跳转回到“please input the password”那一条指令继续执行<br>第三个部分就是比对成功后调用MessageBoxA弹框显示成功。<br>这里有很多种方法使其显示success了。  </p>
+<h3 id="a-第一个就是退出调试，直接在“please-input-the-password”的时候输入正确的密码"><a href="#a-第一个就是退出调试，直接在“please-input-the-password”的时候输入正确的密码" class="headerlink" title="a)第一个就是退出调试，直接在“please input the password”的时候输入正确的密码"></a>a)第一个就是退出调试，直接在“please input the password”的时候输入正确的密码</h3><p><img src="http://i.imgur.com/t5KQvjs.png" alt="">  </p>
+<h3 id="b-第二个就是直接修改指令，重新保存一个新的-exe文件，使得无论输入什么都显示success"><a href="#b-第二个就是直接修改指令，重新保存一个新的-exe文件，使得无论输入什么都显示success" class="headerlink" title="b)第二个就是直接修改指令，重新保存一个新的.exe文件，使得无论输入什么都显示success"></a>b)第二个就是直接修改指令，重新保存一个新的.exe文件，使得无论输入什么都显示success</h3><p><img src="http://i.imgur.com/GA55tl9.png" alt="">  </p>
+<p>修改该条指令为无条件跳转，跳到显示success的地方。然后右键–&gt;复制到可执行文件–&gt;所有修改<br><img src="http://i.imgur.com/vifTkdL.png" alt="">    </p>
+<p><img src="http://i.imgur.com/5Twwbzg.png" alt="">  </p>
+<p>在新窗口右键–&gt;保存文件<br><img src="http://i.imgur.com/sdHOhDR.png" alt="">  </p>
+<p>打开新保存的.exe文件，这时候输入其他什么都会显示success<br><img src="http://i.imgur.com/SiMMqxJ.png" alt="">  </p>
+<h3 id="c-第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。"><a href="#c-第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。" class="headerlink" title="c)第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。"></a>c)第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。</h3><p>查看指令中密码的地址，查看该地址中的数据，将该地址中保存的密码改为自己输入的字符串<br><img src="http://i.imgur.com/k63UfdK.png" alt=""><br>修改后：<br><img src="http://i.imgur.com/YOBA94O.png" alt=""><br>继续运行，成功<br><img src="http://i.imgur.com/HR9gjjW.png" alt=""><br>暂时没去想更多的方法了。。懒</p>
 
-npm install cnpm -g --registry=https://registry.npm.taobao.org
-安装的时候 用cpm 代替np
-2.插入图片 直接拖进markdown编辑器就可以了，然后选择相应的图片就可以了。
-</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/05/1/" data-id="cj59aqrug0000k47tkei67irh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/05/1/" data-id="cj59atlzk00003o7t3ms1s4ui" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
