@@ -68,10 +68,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-逆向实例1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-逆向实例2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/07/17/逆向实例1/" class="article-date">
-  <time datetime="2017-07-17T03:01:39.000Z" itemprop="datePublished">2017-07-17</time>
+    <a href="/2017/07/18/逆向实例2/" class="article-date">
+  <time datetime="2017-07-18T09:01:39.000Z" itemprop="datePublished">2017-07-18</time>
 </a>
     
   <div class="article-category">
@@ -86,7 +86,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/17/逆向实例1/">逆向实例1</a>
+      <a class="article-title" href="/2017/07/18/逆向实例2/">逆向实例2</a>
     </h1>
   
 
@@ -94,12 +94,61 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn"><a href="#1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn" class="headerlink" title="1.文件链接：https://pan.baidu.com/s/1bphae5p 提取码：fdmn"></a>1.文件链接：<a href="https://pan.baidu.com/s/1bphae5p" target="_blank" rel="external">https://pan.baidu.com/s/1bphae5p</a> 提取码：fdmn</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>直接运行reverseTest.exe：<br><img src="http://i.imgur.com/DukRT72.png" alt="">  </p>
+        <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-文件链接：https-pan-baidu-com-s-1hrUEDDE-提取码：3pv2"><a href="#1-文件链接：https-pan-baidu-com-s-1hrUEDDE-提取码：3pv2" class="headerlink" title="1.文件链接：https://pan.baidu.com/s/1hrUEDDE 提取码：3pv2"></a>1.文件链接：<a href="https://pan.baidu.com/s/1hrUEDDE" target="_blank" rel="external">https://pan.baidu.com/s/1hrUEDDE</a> 提取码：3pv2</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>将Traceme.exe拖到IDA里面，查看函数导入表。发现有lstrcmpA，双击，Ctrl+X进入调用的地方<br><img src="http://i.imgur.com/pfkqDq9.png" alt="">  </p>
+<p><img src="http://i.imgur.com/11ZXkHE.png" alt="">  </p>
+<p>然后找到唯一调用lstrcmpA的地方，0x0040138F<br><img src="http://i.imgur.com/qdHtiFx.png" alt="">  </p>
+<p>将Traceme.exe拖到OD中运行，Ctrl+G到0x0040138F的位置，F2下断点<br><img src="http://i.imgur.com/4podtNN.png" alt="">  </p>
+<p>F9运行，随便输入一个用户名和序列号，记住输入的用户名<br><img src="http://i.imgur.com/Kzj4w17.png" alt="">  </p>
+<p>程序在断点处停住，此时的String2,1122就是用户名33333对应的序列号<br><img src="http://i.imgur.com/AKxKUBK.png" alt="">  </p>
+<p>退出程序重新运行，输入用户名33333和序列号1122，运行成功<br><img src="http://i.imgur.com/PXrIp0L.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例2/" data-id="cj59cmw340001u07tbdmfrvev" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-逆向实例1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/18/逆向实例1/" class="article-date">
+  <time datetime="2017-07-18T07:01:39.000Z" itemprop="datePublished">2017-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/逆向/">逆向</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/18/逆向实例1/">逆向实例1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn"><a href="#1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn" class="headerlink" title="1.文件链接：https://pan.baidu.com/s/1bphae5p 提取码：fdmn"></a>1.文件链接：<a href="https://pan.baidu.com/s/1bphae5p" target="_blank" rel="external">https://pan.baidu.com/s/1bphae5p</a> 提取码：fdmn</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>直接运行reverseTest.exe：<br><img src="http://i.imgur.com/DukRT72.png" alt="">  </p>
 <p>图中几个信息：“please input the password”和一个MessageBox里的“failed”和“try again”。  </p>
 <p>将reverseTest.exe拉到OD中运行  </p>
 <p>右键–&gt;中文搜索引擎–&gt;智能搜索<br><img src="http://i.imgur.com/h4H2BSX.png" alt="">  </p>
 <p>发现关键字符串：“please input the password”<br><img src="http://i.imgur.com/a565gpr.png" alt="">  </p>
-<p>双击到指令所在位置0x00401061，看看啥情况<br>这时发现了野生的lstrcmpA字符串比较函数，下面的%s目测就是一个scanf之类的东西<br><img src="http://i.imgur.com/nJCvO27.png" alt=""><br>啥也不管了，先Alt+F9运行到“please input the password”的地方，随便写点东西进去看看怎么说  </p>
+<p>双击到指令所在位置0x00401061，看看啥情况<br>这时发现了野生的lstrcmpA字符串比较函数，下面的%s目测就是一个scanf之类的东西<br><img src="http://i.imgur.com/nJCvO27.png" alt=""><br>啥也不管了，先F9运行到“please input the password”的地方，随便写点东西进去看看怎么说  </p>
 <p>滚轮往下滚了几下，发现了如下几个部分：<br><img src="http://i.imgur.com/mXVfEiW.png" alt=""><br>第一个部分就是将password和我们的输入调用lstrcmpA函数进行比对。对，没错，这个`mddggzdl就是密码。<br>第二个部分就是比对失败之后调用MessageBoxA弹框显示失败并有个重试的按钮，点击重试之后跳转回到“please input the password”那一条指令继续执行<br>第三个部分就是比对成功后调用MessageBoxA弹框显示成功。<br>这里有很多种方法使其显示success了。  </p>
 <h3 id="a-第一个就是退出调试，直接在“please-input-the-password”的时候输入正确的密码"><a href="#a-第一个就是退出调试，直接在“please-input-the-password”的时候输入正确的密码" class="headerlink" title="a)第一个就是退出调试，直接在“please input the password”的时候输入正确的密码"></a>a)第一个就是退出调试，直接在“please input the password”的时候输入正确的密码</h3><p><img src="http://i.imgur.com/t5KQvjs.png" alt="">  </p>
 <h3 id="b-第二个就是直接修改指令，重新保存一个新的-exe文件，使得无论输入什么都显示success"><a href="#b-第二个就是直接修改指令，重新保存一个新的-exe文件，使得无论输入什么都显示success" class="headerlink" title="b)第二个就是直接修改指令，重新保存一个新的.exe文件，使得无论输入什么都显示success"></a>b)第二个就是直接修改指令，重新保存一个新的.exe文件，使得无论输入什么都显示success</h3><p><img src="http://i.imgur.com/GA55tl9.png" alt="">  </p>
@@ -112,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/17/逆向实例1/" data-id="cj59b5ix40001zs7tuh0r168h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj59cmw3j0006u07tu4h5udla" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -159,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj59b5iwz0000zs7tmimaoabr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj59cmw2z0000u07t43bjbtpa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -220,7 +269,11 @@
       <ul>
         
           <li>
-            <a href="/2017/07/17/逆向实例1/">逆向实例1</a>
+            <a href="/2017/07/18/逆向实例2/">逆向实例2</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/18/逆向实例1/">逆向实例1</a>
           </li>
         
           <li>
