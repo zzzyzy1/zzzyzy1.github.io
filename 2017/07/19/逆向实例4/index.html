@@ -5,17 +5,23 @@
   
   <title>逆向实例4 | 嘿嘿嘿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="调试环境：win7 32位1.题目来源：http://www.shiyanbar.com/ctf/28文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp392.开始分析">
+  <meta name="description" content="调试环境：win7 32位1.题目来源：http://www.shiyanbar.com/ctf/28文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp392.开始分析将程序拖到IDA中，在IDA View-A窗口中右键–&amp;gt;Graph View查看程序大概流程。程序主要逻辑也不复杂，通过调用gets()读入一个字符串，然后调用一个函数sub_401060，">
 <meta name="keywords" content="逆向">
 <meta property="og:type" content="article">
 <meta property="og:title" content="逆向实例4">
 <meta property="og:url" content="http://yoursite.com/2017/07/19/逆向实例4/index.html">
 <meta property="og:site_name" content="嘿嘿嘿">
-<meta property="og:description" content="调试环境：win7 32位1.题目来源：http://www.shiyanbar.com/ctf/28文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp392.开始分析">
-<meta property="og:updated_time" content="2017-07-19T03:55:45.206Z">
+<meta property="og:description" content="调试环境：win7 32位1.题目来源：http://www.shiyanbar.com/ctf/28文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp392.开始分析将程序拖到IDA中，在IDA View-A窗口中右键–&amp;gt;Graph View查看程序大概流程。程序主要逻辑也不复杂，通过调用gets()读入一个字符串，然后调用一个函数sub_401060，">
+<meta property="og:image" content="http://i.imgur.com/ts68p34.png">
+<meta property="og:image" content="http://i.imgur.com/LNxoYF8.png">
+<meta property="og:image" content="http://i.imgur.com/wYBvllF.png">
+<meta property="og:image" content="http://i.imgur.com/iPdBsCX.png">
+<meta property="og:image" content="http://i.imgur.com/Wlxg981.png">
+<meta property="og:updated_time" content="2017-07-19T13:50:45.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逆向实例4">
-<meta name="twitter:description" content="调试环境：win7 32位1.题目来源：http://www.shiyanbar.com/ctf/28文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp392.开始分析">
+<meta name="twitter:description" content="调试环境：win7 32位1.题目来源：http://www.shiyanbar.com/ctf/28文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp392.开始分析将程序拖到IDA中，在IDA View-A窗口中右键–&amp;gt;Graph View查看程序大概流程。程序主要逻辑也不复杂，通过调用gets()读入一个字符串，然后调用一个函数sub_401060，">
+<meta name="twitter:image" content="http://i.imgur.com/ts68p34.png">
   
     <link rel="alternate" href="/atom.xml" title="嘿嘿嘿" type="application/atom+xml">
   
@@ -59,7 +65,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -94,11 +100,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-题目来源：http-www-shiyanbar-com-ctf-28"><a href="#1-题目来源：http-www-shiyanbar-com-ctf-28" class="headerlink" title="1.题目来源：http://www.shiyanbar.com/ctf/28"></a>1.题目来源：<a href="http://www.shiyanbar.com/ctf/28" target="_blank" rel="external">http://www.shiyanbar.com/ctf/28</a></h3><h3 id="文件链接：https-pan-baidu-com-s-1caWBnS-提取码：tp39"><a href="#文件链接：https-pan-baidu-com-s-1caWBnS-提取码：tp39" class="headerlink" title="文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp39"></a>文件链接：<a href="https://pan.baidu.com/s/1caWBnS" target="_blank" rel="external">https://pan.baidu.com/s/1caWBnS</a> 提取码：tp39</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3>
+        <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-题目来源：http-www-shiyanbar-com-ctf-28"><a href="#1-题目来源：http-www-shiyanbar-com-ctf-28" class="headerlink" title="1.题目来源：http://www.shiyanbar.com/ctf/28"></a>1.题目来源：<a href="http://www.shiyanbar.com/ctf/28" target="_blank" rel="external">http://www.shiyanbar.com/ctf/28</a></h3><h3 id="文件链接：https-pan-baidu-com-s-1caWBnS-提取码：tp39"><a href="#文件链接：https-pan-baidu-com-s-1caWBnS-提取码：tp39" class="headerlink" title="文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp39"></a>文件链接：<a href="https://pan.baidu.com/s/1caWBnS" target="_blank" rel="external">https://pan.baidu.com/s/1caWBnS</a> 提取码：tp39</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>将程序拖到IDA中，在IDA View-A窗口中右键–&gt;Graph View查看程序大概流程。程序主要逻辑也不复杂，通过调用gets()读入一个字符串，然后调用一个函数sub_401060，根据返回结果判断输入正确与否。当然想爆破的话，将jz short loc_401041改成jmp short loc_40102b或者2个nop就完事。<br><img src="http://i.imgur.com/ts68p34.png" alt="">  </p>
+<p>那么现在，在IDA里双击进入这个sub_401060看看什么情况。  </p>
+<p>sub_401060长这样：<br><img src="http://i.imgur.com/LNxoYF8.png" alt="">  </p>
+<p>首先第一个if说明输入的字符串a1长度要跟v5的长度一样。那么进OD看看内存，看看这个v5的地址是什么情况(v5地址是0x0040708c)  </p>
+<p>Ctrl+G进入0x0040708c之后发现内存长这样，那么0x68到0x06这一段就是v5的字符串，长度为14<br><img src="http://i.imgur.com/wYBvllF.png" alt="">  </p>
+<p>接下来就是将输入的字符串a1按字节跟0x20进行异或运算(第二个红框)  </p>
+<p>这个过程结束之后，就是将字符串v5按字节将每个字节的值减5(第三个红框)  </p>
+<p>第四个红框的式子，简化一下，就是*(v3+a1)==*(v5+v3)，也就是说经过2次处理后的字符串值要等于v5这个字符串的值。然后程序就返回正确。  </p>
+<p>所以，将v5，即0x68 57 19 48 50 6e 58 78 54 6a 19 58 5e 06按字节减5，即0x63 52 14 43 46 59 53 73 4f 65 14 53 59 01，然后按字节跟0x20异或。得到0x43 72 34 63 6b 79 73 53 6f 45 34 73 79 21。转换一下ASCII码即得到结果：Cr4ckysSoE4sy!<br><img src="http://i.imgur.com/iPdBsCX.png" alt="">  </p>
+<p>将答案输入到答题框中，提交。显示正确，”Cr4ckysSoE4sy!”即正确答案(好了不要关注那个92%了，我就是菜鸡)<br><img src="http://i.imgur.com/Wlxg981.png" alt=""></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj5aon6vi0005mg7ta97asv7q" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj5b2g2lw0005d47tws08s5fb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -111,7 +127,7 @@
   
   
     <a href="/2017/07/18/逆向实例3/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">逆向实例3</div>
     </a>
   
@@ -126,7 +142,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/逆向/">逆向</a></li></ul>
     </div>
@@ -136,7 +152,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
     </div>
@@ -155,7 +171,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
@@ -165,7 +181,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
