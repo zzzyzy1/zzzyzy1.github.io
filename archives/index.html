@@ -1,16 +1,502 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-block site_title
-    !=  "归档 · " + config.title
 
-block description
-    - var desc = '归档页面 - ' + config.title;
-    meta(name="description", content=desc)
 
-block content
-    .autopagerize_page_element: .content
-      .archive.animated.fadeInDown
-        ul.list-with-title
-          include mixins
-          +postList()
-          +make_pager(__('prev'), __('next'))
+<title>
+  
+    Archive
+  
+</title>
+
+<meta name="description" content="hahahaha">
+<meta property="og:type" content="website">
+<meta property="og:title" content="嘿嘿嘿">
+<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:site_name" content="嘿嘿嘿">
+<meta property="og:description" content="hahahaha">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="嘿嘿嘿">
+<meta name="twitter:description" content="hahahaha">
+
+
+  <link rel="alternative" href="/atom.xml" title="嘿嘿嘿" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">嘿嘿嘿</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">嘿嘿嘿</a></h1>
+    
+      <p class="subtitle">
+        email:zycid18@126.com
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">hahahaha</div>
+        
+        
+          <div class="author">zy</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="https://cn.gravatar.com/avatar/35fef74d731255cd569c2c2b0b9e87e4?s=200"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/逆向/">逆向</a><span class="category-list-count">4</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a><span class="tag-list-count">4</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">5</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Homepage">Homepage</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/denjones/hexo-theme-chan" title="Chan" target="_blank" rel="external">Chan</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="https://github.com/denjones" title="Github" target="_blank" rel="external">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          
+
+  
+  
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <h1><a href="/archives/2017" class="archive-year">2017</a></h1>
+        </div>
+        <div class="post-list">
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2017/07/19/逆向实例4/" >
+  逆向实例4
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2017/07/19/逆向实例4/"><span class="article-date">
+  2017-07-19
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/逆向/">逆向</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-题目来源：http-www-shiyanbar-com-ctf-28"><a href="#1-题目来源：http-www-shiyanbar-com-ctf-28" class="headerlink" title="1.题目来源：http://www.shiyanbar.com/ctf/28"></a>1.题目来源：<a href="http://www.shiyanbar.com/ctf/28" target="_blank" rel="external">http://www.shiyanbar.com/ctf/28</a></h3><h3 id="文件链接：https-pan-baidu-com-s-1caWBnS-提取码：tp39"><a href="#文件链接：https-pan-baidu-com-s-1caWBnS-提取码：tp39" class="headerlink" title="文件链接：https://pan.baidu.com/s/1caWBnS 提取码：tp39"></a>文件链接：<a href="https://pan.baidu.com/s/1caWBnS" target="_blank" rel="external">https://pan.baidu.com/s/1caWBnS</a> 提取码：tp39</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3>
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2017/07/18/逆向实例3/" >
+  逆向实例3
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2017/07/18/逆向实例3/"><span class="article-date">
+  2017-07-18
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/逆向/">逆向</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-题目来源：适合破解新手的160个crackme练手001"><a href="#1-题目来源：适合破解新手的160个crackme练手001" class="headerlink" title="1.题目来源：适合破解新手的160个crackme练手001"></a>1.题目来源：适合破解新手的160个crackme练手001</h3><h3 id="文件链接：https-pan-baidu-com-s-1dFGNTIT-提取码：i59h"><a href="#文件链接：https-pan-baidu-com-s-1dFGNTIT-提取码：i59h" class="headerlink" title="文件链接：https://pan.baidu.com/s/1dFGNTIT 提取码：i59h"></a>文件链接：<a href="https://pan.baidu.com/s/1dFGNTIT" target="_blank" rel="external">https://pan.baidu.com/s/1dFGNTIT</a> 提取码：i59h</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>这个软件有2部分，一个是Serial/Name，需要输入用户名和注册码才能通过，另外一个Serial只需要输入一个注册码一类的东西。随便选一个开始吧，我就从第一个开始了<br><img src="http://i.imgur.com/boiCKkM.png" alt="">  </p>
+<p>然后发现界面长这样<br><img src="http://i.imgur.com/ejuZtSg.png" alt="">  </p>
+<p>随便输一波name和serial，点击check it baby，弹框提示sorry,the serial is incorrect<br><img src="http://i.imgur.com/3V6kbZ3.png" alt="">  </p>
+<p>有了信息之后，用OD再打开一次，搜参考字符串。然后发现有2个sorry,the serial is incorrect。应该就是对应2个不同玩法的。不过无所谓，分别双击过去看看流程。找到弹框的地方，向上跟踪，就可以找出判断是否正确的地方了，jmp或者nop就算爆破了。<br><img src="http://i.imgur.com/kaiPMWT.png" alt="">  </p>
+<p>第一个sorry,the serial is incorrect附近的指令情况如下，注意到上面有一个与0x4的比较和大于等于就跳转，否则失败。估计是对输入的某个参数长度要求不小于4。那么这个判断于结果关系不大，只要输入长度大于等于4就好了。<br><img src="http://i.imgur.com/t7G14EJ.png" alt="">  </p>
+<p>接下来看另外一个sorry,the serial is incorrect附近的指令情况。发现有个关键跳转：<br><img src="http://i.imgur.com/iSqYoHD.png" alt="">  </p>
+<p>那么，如果把这里改成2个nop或者jmp short 0x0042fb05，保存，就算破解成功了。现在无论输什么都会显示good job dude（用户名长度要大于等于4，那个我懒得改额，不是重点）<br><img src="http://i.imgur.com/FTCA3wg.png" alt="">  </p>
+<p>观察指令，发现在0x0042fb03判断跳转上面调用了一个函数，在call的位置下个断点看看堆栈情况<br><img src="http://i.imgur.com/JC3vKfX.png" alt="">  </p>
+<p>观察堆栈，发现一个奇怪的字符串CW-4100-CRACKED,上面的231231和456564564是刚刚输入的name和serial。然后这个4100和CW-4100-CRACKED都有可能是正确的serial，第二个看着更像。那么现在退出调试，试试name为231231的serial是不是CW-4100-CRACKED<br><img src="http://i.imgur.com/Wl4MWe0.png" alt="">  </p>
+<p>正确。CW-4100-CRACKED就是231231对应的serial<br><img src="http://i.imgur.com/YmeOOfu.png" alt="">  </p>
+<p>接下来看第二部分，只输serial的。运行程序，选择serial，随便输一个，显示失败。关键信息：failed、try again<br><img src="http://i.imgur.com/Qcs4IkX.png" alt="">  </p>
+<p>重新在OD中运行程序，查找ASCII字符串，找到failed和try again对应位置，向上观察指令情况。发现了熟悉的call和jnz跳转。在call下断点。<br><img src="http://i.imgur.com/vX5auqz.png" alt="">  </p>
+<p>选择serial，随便输入一个，然后check it baby。<br><img src="http://i.imgur.com/GeBbofQ.png" alt="">  </p>
+<p>然后程序在断点处暂停。观察call上面2条指令出现过的local.3和local.4。在堆栈窗口中Ctrl+G跟随一波。发现这俩对应的就是输入的4234324和一个hello dude的字符串。然后我尝试输入其他的serial，发现local.3永远是hello dude这个字符串。那么这个serial应该就是固定的，就是”Hello Dude!”<br><img src="http://i.imgur.com/2AgIzLE.png" alt="">  </p>
+<p><img src="http://i.imgur.com/1skU0Pz.png" alt="">  </p>
+<p><img src="http://i.imgur.com/2OHewv2.png" alt="">  </p>
+<p>那么，接下来尝试”Hello Dude!”。成功，hello dude就是固定的serial。<br><img src="http://i.imgur.com/DbtwtAo.png" alt=""></p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2017/07/18/逆向实例2/" >
+  逆向实例2
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2017/07/18/逆向实例2/"><span class="article-date">
+  2017-07-18
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/逆向/">逆向</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-文件链接：https-pan-baidu-com-s-1hrUEDDE-提取码：3pv2"><a href="#1-文件链接：https-pan-baidu-com-s-1hrUEDDE-提取码：3pv2" class="headerlink" title="1.文件链接：https://pan.baidu.com/s/1hrUEDDE 提取码：3pv2"></a>1.文件链接：<a href="https://pan.baidu.com/s/1hrUEDDE" target="_blank" rel="external">https://pan.baidu.com/s/1hrUEDDE</a> 提取码：3pv2</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>将Traceme.exe拖到IDA里面，查看函数导入表。发现有lstrcmpA，双击，Ctrl+X进入调用的地方<br><img src="http://i.imgur.com/pfkqDq9.png" alt="">  </p>
+<p><img src="http://i.imgur.com/11ZXkHE.png" alt="">  </p>
+<p>然后找到唯一调用lstrcmpA的地方，0x0040138F<br><img src="http://i.imgur.com/qdHtiFx.png" alt="">  </p>
+<p>将Traceme.exe拖到OD中运行，Ctrl+G到0x0040138F的位置，F2下断点<br><img src="http://i.imgur.com/4podtNN.png" alt="">  </p>
+<p>F9运行，随便输入一个用户名和序列号，记住输入的用户名<br><img src="http://i.imgur.com/Kzj4w17.png" alt="">  </p>
+<p>程序在断点处停住，此时的String2,1122就是用户名33333对应的序列号<br><img src="http://i.imgur.com/AKxKUBK.png" alt="">  </p>
+<p>退出程序重新运行，输入用户名33333和序列号1122，运行成功<br><img src="http://i.imgur.com/PXrIp0L.png" alt=""></p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2017/07/18/逆向实例1/" >
+  逆向实例1
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2017/07/18/逆向实例1/"><span class="article-date">
+  2017-07-18
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/逆向/">逆向</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn"><a href="#1-文件链接：https-pan-baidu-com-s-1bphae5p-提取码：fdmn" class="headerlink" title="1.文件链接：https://pan.baidu.com/s/1bphae5p 提取码：fdmn"></a>1.文件链接：<a href="https://pan.baidu.com/s/1bphae5p" target="_blank" rel="external">https://pan.baidu.com/s/1bphae5p</a> 提取码：fdmn</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>直接运行reverseTest.exe：<br><img src="http://i.imgur.com/DukRT72.png" alt="">  </p>
+<p>图中几个信息：“please input the password”和一个MessageBox里的“failed”和“try again”。  </p>
+<p>将reverseTest.exe拉到OD中运行  </p>
+<p>右键–&gt;中文搜索引擎–&gt;智能搜索<br><img src="http://i.imgur.com/h4H2BSX.png" alt="">  </p>
+<p>发现关键字符串：“please input the password”<br><img src="http://i.imgur.com/a565gpr.png" alt="">  </p>
+<p>双击到指令所在位置0x00401061，看看啥情况<br>这时发现了野生的lstrcmpA字符串比较函数，下面的%s目测就是一个scanf之类的东西<br><img src="http://i.imgur.com/nJCvO27.png" alt=""><br>啥也不管了，先F9运行到“please input the password”的地方，随便写点东西进去看看怎么说  </p>
+<p>滚轮往下滚了几下，发现了如下几个部分：<br><img src="http://i.imgur.com/mXVfEiW.png" alt=""><br>第一个部分就是将password和我们的输入调用lstrcmpA函数进行比对。对，没错，这个`mddggzdl就是密码。<br>第二个部分就是比对失败之后调用MessageBoxA弹框显示失败并有个重试的按钮，点击重试之后跳转回到“please input the password”那一条指令继续执行<br>第三个部分就是比对成功后调用MessageBoxA弹框显示成功。<br>这里有很多种方法使其显示success了。  </p>
+<h3 id="a-第一个就是退出调试，直接在“please-input-the-password”的时候输入正确的密码"><a href="#a-第一个就是退出调试，直接在“please-input-the-password”的时候输入正确的密码" class="headerlink" title="a)第一个就是退出调试，直接在“please input the password”的时候输入正确的密码"></a>a)第一个就是退出调试，直接在“please input the password”的时候输入正确的密码</h3><p><img src="http://i.imgur.com/t5KQvjs.png" alt="">  </p>
+<h3 id="b-第二个就是直接修改指令，重新保存一个新的-exe文件，使得无论输入什么都显示success"><a href="#b-第二个就是直接修改指令，重新保存一个新的-exe文件，使得无论输入什么都显示success" class="headerlink" title="b)第二个就是直接修改指令，重新保存一个新的.exe文件，使得无论输入什么都显示success"></a>b)第二个就是直接修改指令，重新保存一个新的.exe文件，使得无论输入什么都显示success</h3><p><img src="http://i.imgur.com/GA55tl9.png" alt="">  </p>
+<p>修改该条指令为无条件跳转，跳到显示success的地方。然后右键–&gt;复制到可执行文件–&gt;所有修改<br><img src="http://i.imgur.com/vifTkdL.png" alt="">    </p>
+<p><img src="http://i.imgur.com/5Twwbzg.png" alt="">  </p>
+<p>在新窗口右键–&gt;保存文件<br><img src="http://i.imgur.com/sdHOhDR.png" alt="">  </p>
+<p>打开新保存的.exe文件，这时候输入其他什么都会显示success<br><img src="http://i.imgur.com/SiMMqxJ.png" alt="">  </p>
+<h3 id="c-第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。"><a href="#c-第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。" class="headerlink" title="c)第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。"></a>c)第三种，直接修改内存，将内存里面的字符串修改为我们输入的字符串。不过这种方法只能在调试时用。</h3><p>查看指令中密码的地址，查看该地址中的数据，将该地址中保存的密码改为自己输入的字符串<br><img src="http://i.imgur.com/k63UfdK.png" alt=""><br>修改后：<br><img src="http://i.imgur.com/YOBA94O.png" alt=""><br>继续运行，成功<br><img src="http://i.imgur.com/HR9gjjW.png" alt=""><br>暂时没去想更多的方法了。。懒</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2017/07/07/hello-world/" >
+  Hello World
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2017/07/07/hello-world/"><span class="article-date">
+  2017-07-07
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+        
+      </div>
+    </div>
+
+  
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2017 嘿嘿嘿 - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
