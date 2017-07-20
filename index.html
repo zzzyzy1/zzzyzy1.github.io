@@ -68,6 +68,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-逆向实例5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/20/逆向实例5/" class="article-date">
+  <time datetime="2017-07-20T08:01:39.000Z" itemprop="datePublished">2017-07-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/逆向/">逆向</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/20/逆向实例5/">逆向实例5</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="调试环境：win7-32位"><a href="#调试环境：win7-32位" class="headerlink" title="调试环境：win7 32位"></a>调试环境：win7 32位</h3><h3 id="1-题目来源：http-www-shiyanbar-com-ctf-1884"><a href="#1-题目来源：http-www-shiyanbar-com-ctf-1884" class="headerlink" title="1.题目来源：http://www.shiyanbar.com/ctf/1884"></a>1.题目来源：<a href="http://www.shiyanbar.com/ctf/1884" target="_blank" rel="external">http://www.shiyanbar.com/ctf/1884</a></h3><h3 id="文件链接：https-pan-baidu-com-s-1kV84rQZ-提取码：mkpk"><a href="#文件链接：https-pan-baidu-com-s-1kV84rQZ-提取码：mkpk" class="headerlink" title="文件链接：https://pan.baidu.com/s/1kV84rQZ 提取码：mkpk"></a>文件链接：<a href="https://pan.baidu.com/s/1kV84rQZ" target="_blank" rel="external">https://pan.baidu.com/s/1kV84rQZ</a> 提取码：mkpk</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>将程序拖到IDA中，查看程序大概流程，代码大致如下<br><img src="http://i.imgur.com/21UGXjI.png" alt="">  </p>
+<p>流程就是输入一个字符串，按字节进行跟0x80进行或操作，然后跟v4进行比较。<br>v4长这样：<br><img src="http://i.imgur.com/mFOjBAa.png" alt="">  </p>
+<p>这里采用一个比较取巧的方式，输入一个任意的13位字符串(v4长度为13位)<br>在OD中找到v14对应的位置(esp+0x28)，将其每一个字节的值修改为v4的值，然后将0x004013fb对应的指令改为xor eax,-0x80，就能得到正确的输入。<br><img src="http://i.imgur.com/Aq6e9vD.png" alt="">  </p>
+<p><img src="http://i.imgur.com/jwNfZYz.png" alt="">  </p>
+<p>所以flag为testtest</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/20/逆向实例5/" data-id="cj5cfsiu7000axs7tvh9xqmuh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-逆向实例4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/19/逆向实例4/" class="article-date">
@@ -108,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj5b2g2lw0005d47tws08s5fb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj5cfsiu40006xs7tnejxydjj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -167,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例3/" data-id="cj5b2g2lr0002d47t4j6u5bfh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例3/" data-id="cj5cfsiu10005xs7tz62wagw7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -216,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例2/" data-id="cj5b2g2lp0001d47taqvz0tfj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例2/" data-id="cj5cfsiu00004xs7tzfhqtm9n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -272,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj5b2g2ly0006d47t9xwlwq20" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj5cfsitq0000xs7tfx4rozhk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -319,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj5b2g2lk0000d47tclhu1hr3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj5cfsitv0001xs7t5pnrgmyi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -380,6 +427,10 @@
       <ul>
         
           <li>
+            <a href="/2017/07/20/逆向实例5/">逆向实例5</a>
+          </li>
+        
+          <li>
             <a href="/2017/07/19/逆向实例4/">逆向实例4</a>
           </li>
         
@@ -393,10 +444,6 @@
         
           <li>
             <a href="/2017/07/18/逆向实例1/">逆向实例1</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/07/hello-world/">Hello World</a>
           </li>
         
       </ul>
