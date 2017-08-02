@@ -68,6 +68,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-动态二维数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/02/动态二维数组/" class="article-date">
+  <time datetime="2017-08-02T08:01:39.000Z" itemprop="datePublished">2017-08-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂学/">杂学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/02/动态二维数组/">c/c++实现动态二维数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>c语言直接定义二维数组，例如：<br>int a[10]，中括号里的数必须是常量  </p>
+<p>所以要实现动态分配空间，就要用malloc函数  </p>
+<pre><code>//两维都未知，一次分配内存(保证内存的连续性)
+double **matrix;
+
+//分配指针数组
+matrix = (double **)malloc(sizeof(double*) * m);
+
+//一次性分配所有空间
+matrix[0] = (double *)malloc(sizeof(double) * m * n);
+
+//设置每个指针所指向的数组
+for (i = 1; i &lt; m; i++)
+    matrix[i] = matrix[i - 1] + n*sizeof(double);  
+
+//释放指针  
+free(matrix[0]);  
+free(matrix);  
+free(column_min);  
+free(row_max);  
+</code></pre><p><img src="http://i.imgur.com/uWOw7Mc.jpg" alt="">  </p>
+<p>c++实现：用vector向量实现  </p>
+<pre><code>vector&lt;vector&lt;int&gt; &gt; a(row,vector&lt;int&gt;(column)); //row*column的二维vector，所有元素为0 
+
+vector&lt;vector &lt;double&gt; &gt; matrix(m, vector&lt;double&gt;(n, 0));
+vector&lt;double&gt; row_max(m, 0);
+vector&lt;double&gt; column_min(n, 0);
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/02/动态二维数组/" data-id="cj5uzc8kf0001hg7tm69kypj8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-error LNK2019" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/30/error LNK2019/" class="article-date">
@@ -101,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/30/error LNK2019/" data-id="cj5uqxki30000b87tky8r43n1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/30/error LNK2019/" data-id="cj5uzc8k90000hg7t3a2fqiq6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
@@ -150,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/27/在vs2013中设置全局的include和lib方法/" data-id="cj5uqxkiv0009b87t39ccm37q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/27/在vs2013中设置全局的include和lib方法/" data-id="cj5uzc8ku000ahg7tml9l3y2b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
@@ -197,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/20/逆向实例5/" data-id="cj5uqxkj3000cb87tfyub7mz3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/20/逆向实例5/" data-id="cj5uzc8kq0006hg7tm6rs6dhk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -240,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/20/逆向实例6/" data-id="cj5uqxkj8000hb87tg9vg9j3r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/20/逆向实例6/" data-id="cj5uzc8kx000chg7t255pu3u2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -292,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj5uqxkiy000ab87tnzd1s9sh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj5uzc8lk000xhg7t16x19hdn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -351,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例3/" data-id="cj5uqxkis0006b87t0but3wqe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例3/" data-id="cj5uzc8km0005hg7te56b1x2m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -400,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例2/" data-id="cj5uqxkk6000sb87tw3f7vevd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例2/" data-id="cj5uzc8lv0010hg7tfpvoitc4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -456,7 +525,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj5uqxkiq0005b87t38o3nb1x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj5uzc8kk0004hg7toiefa8uv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -503,7 +572,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj5uqxkk4000rb87t9e2n2tkc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj5uzc8lx0011hg7twdyucors" class="article-share-link">Share</a>
       
       
     </footer>
@@ -551,7 +620,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
   </div>
 
@@ -562,6 +631,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/08/02/动态二维数组/">c/c++实现动态二维数组</a>
+          </li>
         
           <li>
             <a href="/2017/07/30/error LNK2019/">vs2013 error:LNK 2019</a>
@@ -577,10 +650,6 @@
         
           <li>
             <a href="/2017/07/20/逆向实例6/">逆向实例6</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/19/逆向实例4/">逆向实例4</a>
           </li>
         
       </ul>

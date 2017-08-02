@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 逆向 | 嘿嘿嘿</title>
+  <title>c/c++实现动态二维数组 | 嘿嘿嘿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hahahaha">
-<meta property="og:type" content="website">
-<meta property="og:title" content="嘿嘿嘿">
-<meta property="og:url" content="http://yoursite.com/tags/逆向/index.html">
+  <meta name="description" content="c语言直接定义二维数组，例如：int a[10]，中括号里的数必须是常量   所以要实现动态分配空间，就要用malloc函数   //两维都未知，一次分配内存(保证内存的连续性) double **matrix;  //分配指针数组 matrix = (double **)malloc(sizeof(double*) * m);  //一次性分配所有空间 matrix[0] = (double *">
+<meta name="keywords" content="杂学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c&#x2F;c++实现动态二维数组">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/动态二维数组/index.html">
 <meta property="og:site_name" content="嘿嘿嘿">
-<meta property="og:description" content="hahahaha">
+<meta property="og:description" content="c语言直接定义二维数组，例如：int a[10]，中括号里的数必须是常量   所以要实现动态分配空间，就要用malloc函数   //两维都未知，一次分配内存(保证内存的连续性) double **matrix;  //分配指针数组 matrix = (double **)malloc(sizeof(double*) * m);  //一次性分配所有空间 matrix[0] = (double *">
+<meta property="og:image" content="http://i.imgur.com/uWOw7Mc.jpg">
+<meta property="og:updated_time" content="2017-08-02T11:53:31.667Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="嘿嘿嘿">
-<meta name="twitter:description" content="hahahaha">
+<meta name="twitter:title" content="c&#x2F;c++实现动态二维数组">
+<meta name="twitter:description" content="c语言直接定义二维数组，例如：int a[10]，中括号里的数必须是常量   所以要实现动态分配空间，就要用malloc函数   //两维都未知，一次分配内存(保证内存的连续性) double **matrix;  //分配指针数组 matrix = (double **)malloc(sizeof(double*) * m);  //一次性分配所有空间 matrix[0] = (double *">
+<meta name="twitter:image" content="http://i.imgur.com/uWOw7Mc.jpg">
   
     <link rel="alternate" href="/atom.xml" title="嘿嘿嘿" type="application/atom+xml">
   
@@ -66,134 +70,84 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/20/逆向实例5/" class="archive-article-date">
-  <time datetime="2017-07-20T08:01:39.000Z" itemprop="datePublished">Jul 20</time>
+        <section id="main"><article id="post-动态二维数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/02/动态二维数组/" class="article-date">
+  <time datetime="2017-08-02T08:01:39.000Z" itemprop="datePublished">2017-08-02</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂学/">杂学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/20/逆向实例5/">逆向实例5</a>
+    <h1 class="article-title" itemprop="name">
+      c/c++实现动态二维数组
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/20/逆向实例6/" class="archive-article-date">
-  <time datetime="2017-07-20T08:01:39.000Z" itemprop="datePublished">Jul 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/20/逆向实例6/">逆向实例6</a>
-    </h1>
-  
+        <p>c语言直接定义二维数组，例如：<br>int a[10]，中括号里的数必须是常量  </p>
+<p>所以要实现动态分配空间，就要用malloc函数  </p>
+<pre><code>//两维都未知，一次分配内存(保证内存的连续性)
+double **matrix;
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/19/逆向实例4/" class="archive-article-date">
-  <time datetime="2017-07-19T07:01:39.000Z" itemprop="datePublished">Jul 19</time>
-</a>
+//分配指针数组
+matrix = (double **)malloc(sizeof(double*) * m);
+
+//一次性分配所有空间
+matrix[0] = (double *)malloc(sizeof(double) * m * n);
+
+//设置每个指针所指向的数组
+for (i = 1; i &lt; m; i++)
+    matrix[i] = matrix[i - 1] + n*sizeof(double);  
+
+//释放指针  
+free(matrix[0]);  
+free(matrix);  
+free(column_min);  
+free(row_max);  
+</code></pre><p><img src="http://i.imgur.com/uWOw7Mc.jpg" alt="">  </p>
+<p>c++实现：用vector向量实现  </p>
+<pre><code>vector&lt;vector&lt;int&gt; &gt; a(row,vector&lt;int&gt;(column)); //row*column的二维vector，所有元素为0 
+
+vector&lt;vector &lt;double&gt; &gt; matrix(m, vector&lt;double&gt;(n, 0));
+vector&lt;double&gt; row_max(m, 0);
+vector&lt;double&gt; column_min(n, 0);
+</code></pre>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/19/逆向实例4/">逆向实例4</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/18/逆向实例3/" class="archive-article-date">
-  <time datetime="2017-07-18T13:01:39.000Z" itemprop="datePublished">Jul 18</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/02/动态二维数组/" data-id="cj5uzc8kf0001hg7tm69kypj8" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/18/逆向实例3/">逆向实例3</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/18/逆向实例2/" class="archive-article-date">
-  <time datetime="2017-07-18T09:01:39.000Z" itemprop="datePublished">Jul 18</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/18/逆向实例2/">逆向实例2</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/18/逆向实例1/" class="archive-article-date">
-  <time datetime="2017-07-18T07:01:39.000Z" itemprop="datePublished">Jul 18</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/18/逆向实例1/">逆向实例1</a>
-    </h1>
   
+    <a href="/2017/07/30/error LNK2019/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vs2013 error:LNK 2019</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
