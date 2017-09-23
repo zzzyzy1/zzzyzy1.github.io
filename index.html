@@ -68,6 +68,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-逆向实例7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/23/逆向实例7/" class="article-date">
+  <time datetime="2017-09-23T03:01:39.000Z" itemprop="datePublished">2017-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/逆向/">逆向</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/23/逆向实例7/">逆向实例7</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="调试环境：linux-64位"><a href="#调试环境：linux-64位" class="headerlink" title="调试环境：linux 64位"></a>调试环境：linux 64位</h3><h3 id="1-题目来源：XCTF嘉年华体验赛-re2"><a href="#1-题目来源：XCTF嘉年华体验赛-re2" class="headerlink" title="1.题目来源：XCTF嘉年华体验赛 re2"></a>1.题目来源：XCTF嘉年华体验赛 re2</h3><h3 id="文件链接：https-pan-baidu-com-s-1dFivQZv-密码-iuys"><a href="#文件链接：https-pan-baidu-com-s-1dFivQZv-密码-iuys" class="headerlink" title="文件链接：https://pan.baidu.com/s/1dFivQZv 密码: iuys"></a>文件链接：<a href="https://pan.baidu.com/s/1dFivQZv" target="_blank" rel="external">https://pan.baidu.com/s/1dFivQZv</a> 密码: iuys</h3><h3 id="2-开始分析"><a href="#2-开始分析" class="headerlink" title="2.开始分析"></a>2.开始分析</h3><p>该程序是64位.elf文件，需在Linux下运行，将程序在windows下（Linux的IDA不知道为啥看不了伪代码，可能我下的不对，不过我也懒得再找了）拖到64位IDA中，查看程序大概流程：  </p>
+<p><img src="https://i.imgur.com/0AYexmZ.png" alt="">  </p>
+<p>流程基本就是，先输出一堆花花绿绿的东西，然后卡你时间一下，再让你输入username和password，然后再卡你一次时间，然后对输入进行几轮判断，错误即退出。（卡时间真无耻）<br>现在先看看第一个关键函数sub_400C9A()：  </p>
+<p><img src="https://i.imgur.com/xlUebt9.png" alt=""><br>这个循环的目的就是扫描传进来的参数（a1，即username）的所有字节，当扫描的下一个字节为00时，将字节长度（小于等于49）作为参数传入函数sub_400C41()中，说白了就是字符串长度判断。然后查看sub_400C41()：  </p>
+<p><img src="https://i.imgur.com/WEJbu2t.png" alt="">  </p>
+<p>这个函数的意思就是，如果字符串长度不满足这么些条件，就判定为错，程序退出。<br>然后我写了个c程序遍历一下，得到长度要么是8要么是12。  </p>
+<p>接下来回到main函数看第二个关键函数sub_400CDD()：  </p>
+<p><img src="https://i.imgur.com/0vfUlhs.png" alt="">  </p>
+<p>这里有3个参数v2，v3，v4。也就是说如果长度为8，v2就是0x00000000了（DWORD是双字，即4字节），第三个判断条件就没法满足。所以username的长度就是12。然后我一开始的思路是写个程序跑出对应的v2，v3，v4。后来发现这样真的代价太大，在第三个关键函数sub_4008F7()中看出要遍历的话有27^12(a~z和下划线)种可能：  </p>
+<p><img src="https://i.imgur.com/d8GkOVS.png" alt="">  </p>
+<p>这遍历的代价也太大了，这地方也卡了我好久。后来想了下，这特么不就是三元一次方程组么。。小学生都会做，就是数值大了点而已。真是越长大越弱智。算出来<br>v4=0x61746163<br>v3=0x7473796c<br>v2=0x6f65635f<br>所以正确的username就是0x636174616c7973745f63656f（注意字节倒序），即catalyst_ceo。  </p>
+<p>接下来看第四个关键函数sub_400977()。这个函数传入的参数有username和password。  </p>
+<p><img src="https://i.imgur.com/JSWRj0n.png" alt="">  </p>
+<p>这里先对输入的password进行判断，其实就是只要大小写英文字母和数字。<br>下面的srand()函数用username作为seed。然后下面有12个判断，即password字符串长度为48。每次判断rand()一次。因为seed固定，所以每次的rand()也是固定的，也就是说说每次运行的每次rand()都是固定的。因此可以写个程序rand()出所有要比较的数，然后进行计算，算出对应的password。<br>对应的password为sLSVK3cGWyW86AiZhggwLHBjmx9CRspVGggj。<br>然后运行程序输入对应的username和password，得到正确的flag(要在edb改内存跳转，不然要被卡2次时间)。  </p>
+<p><img src="https://i.imgur.com/V7QlfeM.png" alt="">  </p>
+<p>完事。收工</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/23/逆向实例7/" data-id="cj7wtgc7d0012ug7ttmixhwec" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-逆向实例6" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/21/逆向实例6/" class="article-date">
@@ -99,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/21/逆向实例6/" data-id="cj7u73p9a000zl87t1sidpdp7" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/09/21/逆向实例6/" data-id="cj7wtgc6t000oug7tncawoyyq" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -166,7 +224,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/02/动态二维数组/" data-id="cj7u73p8d0006l87tirqzhxjt" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/08/02/动态二维数组/" data-id="cj7wtgc6k000cug7t9o5hmda5" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
@@ -211,7 +269,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/30/error LNK2019/" data-id="cj7u73p7x0000l87tbt9gyxty" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/07/30/error LNK2019/" data-id="cj7wtgc620000ug7tmrre7xm0" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
@@ -260,7 +318,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/27/在vs2013中设置全局的include和lib方法/" data-id="cj7u73p820001l87th6pbyxwv" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/07/27/在vs2013中设置全局的include和lib方法/" data-id="cj7wtgc6c0004ug7tkhjcbxif" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂学/">杂学</a></li></ul>
@@ -307,7 +365,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/20/逆向实例5/" data-id="cj7u73p8o000kl87tx92fmf9j" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/07/20/逆向实例5/" data-id="cj7wtgc6q000jug7tsgi704um" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -359,7 +417,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj7u73p8k000dl87teg21ue8o" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/07/19/逆向实例4/" data-id="cj7wtgc6o000gug7tjz4ixl1d" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -418,7 +476,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例3/" data-id="cj7u73p8n000il87tl8skj5z2" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例3/" data-id="cj7wtgc6g0006ug7ty7kmg578" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -467,7 +525,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例2/" data-id="cj7u73p8g000al87tb9yzto2k" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例2/" data-id="cj7wtgc6e0005ug7tx3tm5x8a" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -523,7 +581,7 @@ vector&lt;double&gt; column_min(n, 0);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj7u73p890005l87tyc1hyf8y" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/07/18/逆向实例1/" data-id="cj7wtgc6j000aug7tkqjsf2mn" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
@@ -535,52 +593,11 @@ vector&lt;double&gt; column_min(n, 0);
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/07/hello-world/" class="article-date">
-  <time datetime="2017-07-07T12:09:03.682Z" itemprop="datePublished">2017-07-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/07/hello-world/" data-id="cj7u73p880004l87to6urguws" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
 
-  
-
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
@@ -631,6 +648,10 @@ vector&lt;double&gt; column_min(n, 0);
       <ul>
         
           <li>
+            <a href="/2017/09/23/逆向实例7/">逆向实例7</a>
+          </li>
+        
+          <li>
             <a href="/2017/09/21/逆向实例6/">逆向实例6</a>
           </li>
         
@@ -644,10 +665,6 @@ vector&lt;double&gt; column_min(n, 0);
         
           <li>
             <a href="/2017/07/27/在vs2013中设置全局的include和lib方法/">在vs2013中设置全局的include和lib方法</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/20/逆向实例5/">逆向实例5</a>
           </li>
         
       </ul>
